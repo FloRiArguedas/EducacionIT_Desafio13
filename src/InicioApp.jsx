@@ -84,14 +84,42 @@ const InicioApp = () => {
   }
 
   //?ELIMINAR USUARIO
-  const eliminarUsuario = (id) => { 
-    // //Nuevo array para recorrerlo y comparar el ID
-    // const nuevoEstadoUsuarios = users.filter(function(user) { 
-    //   if ( user.id !== id ) {
-    //     return user
-    //   } else {console.log(user, 'Este es el usuario que se va a eliminar', id)}
-    // })
-    // setUsers(nuevoEstadoUsuarios) //Creo el nuevo array sin el usuario borrado.
+  const eliminarUsuario = async (id) => { 
+   
+    try {
+      
+      //HAGO LA PETICIÓN
+      const urleliminar = url + id
+      
+      const options = {
+        method: 'DELETE'
+      }
+
+      const res = await fetch (urleliminar, options)
+
+      if (!res.ok) {
+        throw new Error (`No fue posible eliminar el usuario ${res.status}`)
+      }
+
+      const dataEliminado = await res.json()
+
+      const data = {
+        id: id,
+        usuario: dataEliminado
+      }
+
+      //CAMBIO EL ESTADO DE REACT PARA RENDERIZAR
+
+      const nuevoEstadoUsuarios = users.filter ( user => user.id !== data.id)
+      setUsers(nuevoEstadoUsuarios)
+
+
+
+      
+    } catch (error) {
+      console.error(error)
+    }
+
   }
 
   //?EDITAR USUARIO

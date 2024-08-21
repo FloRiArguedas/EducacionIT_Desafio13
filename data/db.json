@@ -34,13 +34,6 @@
       "apellido": "Jiménez",
       "edad": "46",
       "color": "Rojo"
-    },
-    {
-      "id": 6,
-      "nombre": "Sandra",
-      "apellido": "Arguedas",
-      "edad": "43",
-      "color": "Rosado"
     }
   ]
 }

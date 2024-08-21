@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { menuItems } from "../constants/menuItems";
 
 const Navbar = () => {
   return (
@@ -21,7 +22,19 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item">
+
+            {
+              menuItems.map( (item, idx) => (
+                <li className="nav-item" key={idx}>
+                  <NavLink className="nav-link active" to={item.ruta}>
+                   {item.nombre}
+                </NavLink>
+              </li>
+              ))  
+            }
+
+
+            {/* <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/">
                 Inicio
               </NavLink>
@@ -44,7 +57,7 @@ const Navbar = () => {
                 Contáctenos
               </NavLink>
             </li>
-            
+             */}
           </ul>
         </div>
       </div>

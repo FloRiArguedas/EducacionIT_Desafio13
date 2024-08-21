@@ -161,7 +161,7 @@ const InicioApp = () => {
   return (
     <>
 
-    <BrowserRouter>
+    {/* <BrowserRouter>
 
       <Navbar />
       <div className="container">
@@ -174,7 +174,7 @@ const InicioApp = () => {
         </Routes>
       </div>
 
-    </BrowserRouter>
+    </BrowserRouter> */}
 
     
     <div className="container">

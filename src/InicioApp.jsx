@@ -113,9 +113,7 @@ const InicioApp = () => {
       const nuevoEstadoUsuarios = users.filter ( user => user.id !== data.id)
       setUsers(nuevoEstadoUsuarios)
 
-
-
-      
+   
     } catch (error) {
       console.error(error)
     }
@@ -124,15 +122,40 @@ const InicioApp = () => {
 
   //?EDITAR USUARIO
 
-  const editarUsuario = (usuarioEditado) => {
-    // const nuevoEstadoUsuarios = usuarios.map (function(user){
-    //   if (user.id === usuarioEditado.id){
-    //       return usuarioEditado
-    //   } else {
-    //     return user
-    //   }
-    // })
-    // setUsers(nuevoEstadoUsuarios)
+  const editarUsuario = async (usuarioEditado) => {
+
+    try {
+
+      const options = {
+        method: 'PUT',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(usuarioEditado)
+      }
+
+      const urlEdicion = url + usuarioEditado.id
+
+      console.log(urlEdicion)
+
+      //HAGO LA PETICIÓN
+      const res = await fetch (urlEdicion, options)
+      
+      if (!res.ok) {
+        throw new Error (`No fue posible editar el usuario ${res.status}`)
+      }
+
+      const dataEditado = await res.json()
+      console.log(dataEditado)
+
+      //CAMBIO EL ESTADO DE REACT PARA RENDERIZAR
+
+      const nuevoEstadoUsuarios = users.map (user => (user.id === usuarioEditado.id) ? usuarioEditado : user)
+      setUsers(nuevoEstadoUsuarios)
+
+      
+    } catch (error) {
+      console.error(error)
+    }
+
   }
 
   return (

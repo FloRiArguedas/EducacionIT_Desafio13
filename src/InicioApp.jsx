@@ -3,6 +3,13 @@ import Formulario from "./components/Formulario"
 import Tabla from "./components/Tabla"
 import usuarios from './constants/usuarios'
 import { v4 as uuidv4 } from 'uuid'; //Librería para generar ID al azar
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Inicio from "./pages/Inicio";
+import Contacto from "./pages/Contacto";
+import Nosotros from "./pages/Nosotros";
+import NoEncontrada from "./pages/NoEncontrada";
+import Navbar from "./components/Navbar";
+import Efectos from "./pages/Efectos";
 
 /* CONTENEDOR */
 const InicioApp = () => {
@@ -44,6 +51,24 @@ const InicioApp = () => {
   }
 
   return (
+    <>
+
+    <BrowserRouter>
+
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path= '/' element={<Inicio />}/>
+          <Route path= '/efectos' element={<Efectos />}/>
+          <Route path= '/nosotros' element={<Nosotros />}/>
+          <Route path= '/contacto' element={<Contacto />}/>
+          <Route path= '*' element={<NoEncontrada />}/>
+        </Routes>
+      </div>
+
+    </BrowserRouter>
+
+    
     <div className="container">
       <Formulario 
         agregarUsuario={agregarUsuario}
@@ -57,7 +82,14 @@ const InicioApp = () => {
         setUsuarioAEditar={setUsuarioAEditar}
       />
     </div>
+   
+
+    </>
+    
   )
 }
 
 export default InicioApp
+
+
+ 

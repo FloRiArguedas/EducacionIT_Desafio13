@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Formulario from "./components/Formulario"
 import Tabla from "./components/Tabla"
 import usuarios from './constants/usuarios'
@@ -13,41 +13,72 @@ import Efectos from "./pages/Efectos";
 
 /* CONTENEDOR */
 const InicioApp = () => {
+
+  const url = import.meta.env.VITE_API_USUARIOS
   
   const [users, setUsers] = useState(usuarios) 
 
   const [usuarioAEditar, setUsuarioAEditar] = useState(null) //Array con el usuario que quiero editar
 
+
+  //AGREGO USEEFFECT PARA PETICIÓN ASINCRÓNICA
+
+  useEffect(() => {
+    console.log("Se pone el componente en la pantalla")
+    ObtenerTodosLosUsuarios()
+  }, [])
+
+  const ObtenerTodosLosUsuarios = async () => {
+    //Hago aquí la petición
+    try {
+
+      const res = await fetch (url)
+      
+      
+      if (!res.ok) {
+        throw new Error (`No fue posible obtener los usuarios ${res.status}`)
+      }
+
+      const data = await res.json()
+
+      console.log(data)
+      
+    } catch (error) {
+      
+    }
+  }
+  
+
   //?AGREGAR USUARIO
   const agregarUsuario = (usuario) => {
-    usuario.id = uuidv4() //Agrego el ID para el usuario
-    console.log('Agregando el usuario nuevo al array...', usuario)
-    const nuevoEstadousuarios = [...usuarios, usuario] //Nuevo array con usuario nuevo.
-    setUsers(nuevoEstadousuarios) 
+    // usuario.id = uuidv4() //Agrego el ID para el usuario
+    // console.log('Agregando el usuario nuevo al array...', usuario)
+    // const nuevoEstadousuarios = [...usuarios, usuario] //Nuevo array con usuario nuevo.
+    // setUsers(nuevoEstadousuarios) 
   }
 
   //?ELIMINAR USUARIO
   const eliminarUsuario = (id) => { 
-    //Nuevo array para recorrerlo y comparar el ID
-    const nuevoEstadoUsuarios = users.filter(function(user) { 
-      if ( user.id !== id ) {
-        return user
-      } else {console.log(user, 'Este es el usuario que se va a eliminar', id)}
-    })
-    setUsers(nuevoEstadoUsuarios) //Creo el nuevo array sin el usuario borrado.
+    // //Nuevo array para recorrerlo y comparar el ID
+    // const nuevoEstadoUsuarios = users.filter(function(user) { 
+    //   if ( user.id !== id ) {
+    //     return user
+    //   } else {console.log(user, 'Este es el usuario que se va a eliminar', id)}
+    // })
+    // setUsers(nuevoEstadoUsuarios) //Creo el nuevo array sin el usuario borrado.
   }
 
   //?EDITAR USUARIO
 
   const editarUsuario = (usuarioEditado) => {
-    const nuevoEstadoUsuarios = usuarios.map (function(user){
-      if (user.id === usuarioEditado.id){
-          return usuarioEditado
-      } else {
-        return user
-      }
-    })
-    setUsers(nuevoEstadoUsuarios)
+    // const nuevoEstadoUsuarios = usuarios.map (function(user){
+    //   if (user.id === usuarioEditado.id){
+    //       return usuarioEditado
+    //   } else {
+    //     return user
+    //   }
+    // })
+    // setUsers(nuevoEstadoUsuarios)
   }
 
   return (

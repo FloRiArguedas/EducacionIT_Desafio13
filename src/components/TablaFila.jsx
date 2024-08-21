@@ -3,7 +3,7 @@ import { notificacionSweet } from "./TablaFila.service"; //Importo librería par
 
 const TablaFila = ( { users, eliminarUsuario, setUsuarioAEditar} ) => {
     
-  console.log(users) 
+  //console.log(users) 
 
   const handleEliminar = () => {
     

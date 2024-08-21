@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { menuItems } from "../constants/menuItems";
+import NavItem from "./NavItem";
 
 const Navbar = () => {
   return (
@@ -25,39 +26,10 @@ const Navbar = () => {
 
             {
               menuItems.map( (item, idx) => (
-                <li className="nav-item" key={idx}>
-                  <NavLink className="nav-link active" to={item.ruta}>
-                   {item.nombre}
-                </NavLink>
-              </li>
+                <NavItem objItem={item} key={idx + item.nombre} />
               ))  
             }
 
-
-            {/* <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/">
-                Inicio
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/efectos">
-                Efectos
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/nosotros">
-                Nosotros
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/contacto">
-                Contáctenos
-              </NavLink>
-            </li>
-             */}
           </ul>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
-import InicioApp from "./InicioApp";
+import Usuarios from "./Usuarios";
 import Inicio from "./pages/Inicio";
 import Contacto from "./pages/Contacto";
 import Nosotros from "./pages/Nosotros";
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root"))
   <BrowserRouter>
     <Navbar />
     <Routes>
-      <Route path="/" element={<InicioApp />} />
+      <Route path="/" element={<Usuarios />} />
       <Route path= '/efectos' element={<Efectos />}/>
       <Route path= '/nosotros' element={<Nosotros />}/>
       <Route path= '/contacto' element={<Contacto />}/>

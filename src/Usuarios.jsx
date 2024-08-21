@@ -12,7 +12,7 @@ import Navbar from "./components/Navbar";
 import Efectos from "./pages/Efectos";
 
 /* CONTENEDOR */
-const InicioApp = () => {
+const Usuarios = () => {
 
   const url = import.meta.env.VITE_API_USUARIOS
   
@@ -160,22 +160,6 @@ const InicioApp = () => {
 
   return (
     <>
-
-    {/* <BrowserRouter>
-
-      <Navbar />
-      <div className="container">
-        <Routes>
-          <Route path= '/' element={<Inicio />}/>
-          <Route path= '/efectos' element={<Efectos />}/>
-          <Route path= '/nosotros' element={<Nosotros />}/>
-          <Route path= '/contacto' element={<Contacto />}/>
-          <Route path= '*' element={<NoEncontrada />}/>
-        </Routes>
-      </div>
-
-    </BrowserRouter> */}
-
     
     <div className="container">
       <Formulario 
@@ -197,7 +181,7 @@ const InicioApp = () => {
   )
 }
 
-export default InicioApp
+export default Usuarios
 
 
  

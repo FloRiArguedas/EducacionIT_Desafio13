@@ -16,7 +16,7 @@ const InicioApp = () => {
 
   const url = import.meta.env.VITE_API_USUARIOS
   
-  const [users, setUsers] = useState(usuarios) 
+  const [users, setUsers] = useState(null) //Lo inicio en null
 
   const [usuarioAEditar, setUsuarioAEditar] = useState(null) //Array con el usuario que quiero editar
 
@@ -42,6 +42,8 @@ const InicioApp = () => {
       const data = await res.json()
 
       console.log(data)
+
+      setUsers(data) //Aquí hago el set para los usuarios que llegan del backend
       
     } catch (error) {
       

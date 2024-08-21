@@ -18,7 +18,7 @@ const Tabla = ({users, eliminarUsuario, setUsuarioAEditar}) => {
         </thead>
         <tbody>
             {
-              users.map((users, idx) => (
+              users && users.map((users, idx) => (
                 <TablaFila 
                   key={idx} 
                   users={users} 

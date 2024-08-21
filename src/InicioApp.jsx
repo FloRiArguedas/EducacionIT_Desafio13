@@ -52,11 +52,35 @@ const InicioApp = () => {
   
 
   //?AGREGAR USUARIO
-  const agregarUsuario = (usuario) => {
-    // usuario.id = uuidv4() //Agrego el ID para el usuario
-    // console.log('Agregando el usuario nuevo al array...', usuario)
-    // const nuevoEstadousuarios = [...usuarios, usuario] //Nuevo array con usuario nuevo.
-    // setUsers(nuevoEstadousuarios) 
+  const agregarUsuario = async (usuario) => {
+
+    try {
+
+      const options = {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(usuario)
+      }
+      //HAGO LA PETICIÓN
+      const res = await fetch (url, options)
+      
+      if (!res.ok) {
+        throw new Error (`No fue posible agregar el usuario ${res.status}`)
+      }
+
+      const dataNuevoUsuario = await res.json()
+      console.log(dataNuevoUsuario)
+
+      //CAMBIO EL ESTADO DE REACT PARA RENDERIZAR
+
+      const nuevoEstadoUsuarios = [...users, dataNuevoUsuario]
+      setUsers(nuevoEstadoUsuarios)
+
+      
+    } catch (error) {
+      console.error(error)
+    }
+
   }
 
   //?ELIMINAR USUARIO
